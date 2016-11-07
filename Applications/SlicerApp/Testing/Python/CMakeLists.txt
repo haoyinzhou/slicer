@@ -292,6 +292,7 @@ if(Slicer_USE_QtTesting AND Slicer_USE_PYTHONQT)
   slicer_add_python_unittest(SCRIPT Charting.py)
   slicer_add_python_unittest(SCRIPT SliceLinkLogic.py)
   slicer_add_python_unittest(SCRIPT ScenePerformance.py)
+  slicer_add_python_unittest(SCRIPT QtMixinTest.py)
   slicer_add_python_unittest(SCRIPT SlicerCreateRulerCrashIssue4199.py)
   slicer_add_python_unittest(SCRIPT SlicerRestoreSceneViewCrashIssue3445.py)
   slicer_add_python_unittest(SCRIPT RSNAVisTutorial.py)
@@ -317,6 +318,7 @@ if(Slicer_USE_QtTesting AND Slicer_USE_PYTHONQT)
     Charting.py
     SliceLinkLogic.py
     ScenePerformance.py
+    QtMixinTest.py
     RSNAVisTutorial.py
     RSNAQuantTutorial.py
     slicerCloseCrashBug2590.py
@@ -354,6 +356,7 @@ if(Slicer_USE_QtTesting AND Slicer_USE_PYTHONQT)
 
   set(KIT_PYTHON_RESOURCES
     Resources/UI/ScenePerformance.ui
+    Resources/UI/QtMixinTest.ui
     )
 
   ctkMacroCompilePythonScript(

@@ -641,6 +641,43 @@ def array(pattern = "", index = 0):
 
 
 #
+# Qt
+#
+
+class QtWidgetMixin(object):
+  def __init__(self):
+    super(QtWidgetMixin, self).__init__()
+    self.Widget = None
+
+  def loadUI(self, path, fail_silently=False):
+    # Attempts to load and return a ui file that the given path points to.
+    # This method will raise an AssertionError if the ui file cannot be
+    # loaded and fail_silently is False (default).
+    import qt
+    qfile = qt.QFile(path)
+    qfile.open(qt.QFile.ReadOnly)
+    loader = qt.QUiLoader()
+    widget = loader.load(qfile)
+    if not fail_silently and not widget:
+      errorMessage = "Could not load UI file: " + str(path) + "\n\n"
+      raise AssertionError(errorMessage)
+    return widget
+
+  def get(self, name):
+    # Convenience method to access a widget from the self.Widget attribute.
+    # This method will throw an AssertionError exception if the widget with the
+    # given name does not exist.
+    errorMessage = "Widget named " + str(name) + " does not exists."
+    widget = None
+    try:
+      widget = findChildren(self.Widget, name=name)[0]
+      if not widget:
+        raise AssertionError(errorMessage)
+    except IndexError:
+      raise AssertionError(errorMessage)
+    return widget
+
+#
 # VTK
 #
 
